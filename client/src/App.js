@@ -5,7 +5,6 @@ import Fib from "./Fib";
 import nextPage from "./nextPage";
 
 function App() {
-  render() {
     return (
       <Router>
         <div className="App">
@@ -22,7 +21,6 @@ function App() {
         </div>
       </Router>
     );
-  }
 }
 
 export default App;
