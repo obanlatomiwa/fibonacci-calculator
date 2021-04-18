@@ -5,7 +5,7 @@
       "express": "4.16.3",
       "pg": "7.4.3",
       "cors": "2.8.4",
-      "bdy-parser": "*"
+      "body-parser": "*"
     },
     "scripts": {
       "dev": "nodemon",

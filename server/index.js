@@ -21,7 +21,7 @@ const pgClient = new Pool({
 });
 
 pgClient.on("error", () => {
-  console.log("Cannot connect to DB");
+  console.log("Cannot connect to Postgres DB");
 });
 
 pgClient
