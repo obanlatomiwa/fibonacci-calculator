@@ -19,7 +19,7 @@ class Fib extends Component {
   }
 
   async fetchIndexes() {
-    const indexes = await axios.get("/values/all");
+    const indexes = await axios.get("/api/values/all");
     this.setState({ seenIndexes: indexes.data });
   }
  

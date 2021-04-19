@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const keys = require("./keys");
+const redis = require("redis");
 
 // Express
 const app = express();
@@ -20,15 +21,14 @@ const pgClient = new Pool({
   port: keys.pgPort,
 });
 
-pgClient.on("error", () => {
+pgClient.on("connect", () => {
   console.log("Cannot connect to Postgres DB");
+  pgClient
+    .query("CREATE TABLE IF NOT EXISTS values (number INT)")
+    .catch((err) => {
+      console.log(err);
+    });
 });
-
-pgClient
-  .query("CREATE TABLE IF NOT EXISTS values (number INT)")
-  .catch((err) => {
-    console.log(err);
-  });
 
 // Redis
 const redisClient = redis.createClient({
@@ -73,4 +73,3 @@ app.post("/values", (req, res) => {
 app.listen(8000, () => {
   console.log("Listening to port 8000");
 });
-
