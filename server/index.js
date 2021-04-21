@@ -24,7 +24,7 @@ const pgClient = new Pool({
 pgClient.on("connect", () => {
   console.log("Cannot connect to Postgres DB");
   pgClient
-    .query("CREATE TABLE IF NOT EXISTS values (number INT)")
+    .query('CREATE TABLE IF NOT EXISTS values (number INT)')
     .catch((err) => {
       console.log(err);
     });
@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/values/all", async (req, res) => {
-  const values = await pgClient.query("SELECT * FROM values");
+  const values = await pgClient.query('SELECT * FROM values');
   res.send(values);
 });
 
@@ -66,7 +66,7 @@ app.post("/values", (req, res) => {
 
   redisClient.hset("values", index, "nothing yet");
   redisPublisher.publish("insert", index);
-  pgClient.query("INSERT INTO values(number) VALUES($1)", [index]);
+  pgClient.query('INSERT INTO values(number) VALUES($1)', [index]);
   res.send({ working: true });
 });
 
